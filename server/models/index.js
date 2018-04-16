@@ -1,11 +1,9 @@
 const Sequelize = require('sequelize');
 
 //use /du in psql to get username
-const sequelize = new Sequelize({
-  database: 'slack',
-  username: 'iamwetalldid',
-  password: null,
-  dialect: 'postgres'
+const sequelize = new Sequelize('slack', 'iamwetalldid', null, {
+  dialect: 'postgres',
+  underscored: true
 });
 
 const models = {
