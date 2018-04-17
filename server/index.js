@@ -5,8 +5,9 @@ const { makeExecutableSchema } = require('graphql-tools');
 const sequelize = require('sequelize');
 const models = require('./models/index');
 const path = require('path');
+const cors = require('cors');
 const { fileLoader, mergeTypes, mergeResolvers } = require('merge-graphql-schemas');
-const PORT = 3000;
+const PORT = 4000;
 
 const typeDefs = mergeTypes(fileLoader(path.join(__dirname, './schema')));
 const resolvers = mergeResolvers(fileLoader(path.join(__dirname, './resolvers')));
@@ -17,6 +18,7 @@ const myGraphQLSchema = makeExecutableSchema({
 });
 
 const app = express();
+app.use(cors('*'));
 const ENDPOINT = '/graphql';
 
 app.use(
